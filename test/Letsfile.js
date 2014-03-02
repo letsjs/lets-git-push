@@ -12,4 +12,11 @@ module.exports = function (lets) {
   }));
 
   lets.addStage('testing', testing);
+
+  lets.addStage('testing2', lets.Stage()
+    .plugin(gitPush.deploy({
+      remote: 'testing2',
+      branch: 'master',
+      remoteBranch: 'develop'
+    })));
 };
