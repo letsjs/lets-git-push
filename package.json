@@ -1,0 +1,38 @@
+{
+  "name": "lets-git-push",
+  "version": "0.0.0",
+  "description": "A Lets plugin for deploying through git push (eg heroku)",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/letsjs/lets-git-push.git"
+  },
+  "keywords": [
+    "lets",
+    "deploy",
+    "deployment",
+    "git",
+    "push"
+  ],
+  "author": "Andreas Hultgren",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/letsjs/lets-git-push/issues"
+  },
+  "homepage": "https://github.com/letsjs/lets-git-push",
+  "devDependencies": {
+    "sinon-chai": "^2.5.0",
+    "grunt-mocha-test": "^0.9.3",
+    "chai": "^1.9.0",
+    "grunt-cli": "^0.1.13",
+    "mocha": "^1.17.1",
+    "grunt-contrib-watch": "^0.5.3",
+    "grunt": "^0.4.2",
+    "sinon": "^1.8.2",
+    "grunt-contrib-jshint": "^0.8.0",
+    "lets": "^0.0.1"
+  }
+}
