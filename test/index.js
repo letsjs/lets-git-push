@@ -25,6 +25,9 @@ gitPush.exec = sinon.spy(function (cmd, callback) {
   callback();
 });
 
+// Prevent event from exiting process
+lets.logger.on('error', function () {});
+
 
 /* Tests
 ============================================================================= */
@@ -68,5 +71,41 @@ describe('With only different local and remote branch set,', function () {
           .calledWithExactly('git push testing2 master:develop', sinon.match.func);
       });
     });
+  });
+});
+
+describe('With no remote set,', function () {
+  before(function (done) {
+    lets.logger.error = sinon.spy();
+    lets.runTasks(config, 'deploy', 'testing3', function () {
+      done();
+    });
+  });
+
+  it('should callback an error', function () {
+    var errorString = 'lets-git-push: options.remote must be set';
+
+    lets.logger.error.should.have.been
+      .calledWithMatch(sinon.match(function (err) {
+        return err.message === errorString;
+      }, errorString));
+  });
+});
+
+describe('With no branch set,', function () {
+  before(function (done) {
+    lets.logger.error = sinon.spy();
+    lets.runTasks(config, 'deploy', 'testing4', function () {
+      done();
+    });
+  });
+
+  it('should callback an error', function () {
+    var errorString = 'lets-git-push: options.branch or options.localBranch must be set';
+
+    lets.logger.error.should.have.been
+      .calledWithMatch(sinon.match(function (err) {
+        return err.message === errorString;
+      }, errorString));
   });
 });

@@ -19,4 +19,14 @@ module.exports = function (lets) {
       branch: 'master',
       remoteBranch: 'develop'
     })));
+
+  lets.addStage('testing3', lets.Stage()
+    .plugin(gitPush.deploy({
+      branch: 'master'
+    })));
+
+  lets.addStage('testing4', lets.Stage()
+    .plugin(gitPush.deploy({
+      remote: 'testing4'
+    })));
 };

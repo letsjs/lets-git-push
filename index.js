@@ -16,10 +16,19 @@ exports._deploy = function (stage) {
     var command = 'git push ' + options.remote,
         localBranch;
 
+    // Guards
+    if(!options.remote) {
+      return next(new Error('lets-git-push: options.remote must be set'));
+    }
+
+    if(!options.branch && !options.localBranch) {
+      return next(new Error('lets-git-push: options.branch or options.localBranch must be set'));
+    }
+
+    // Support different local and remote branch, fall back to default git
+    // behavior if only one is specified
     localBranch = options.localBranch || options.branch;
 
-    // Support different lcoal and remote branch, fall back to default git
-    // behavior if only one is specified
     if(options.remoteBranch && options.remoteBranch !== localBranch) {
       command += ' ' + localBranch + ':' + options.remoteBranch;
     }
