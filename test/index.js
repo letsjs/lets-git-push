@@ -83,7 +83,7 @@ describe('With no remote set,', function () {
   });
 
   it('should callback an error', function () {
-    var errorString = 'lets-git-push: options.remote must be set';
+    var errorString = 'lets-git-push: `options.remote` must be set';
 
     lets.logger.error.should.have.been
       .calledWithMatch(sinon.match(function (err) {
@@ -101,7 +101,7 @@ describe('With no branch set,', function () {
   });
 
   it('should callback an error', function () {
-    var errorString = 'lets-git-push: options.branch or options.localBranch must be set';
+    var errorString = 'lets-git-push: `options.branch` or `options.localBranch` must be set';
 
     lets.logger.error.should.have.been
       .calledWithMatch(sinon.match(function (err) {

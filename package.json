@@ -1,6 +1,6 @@
 {
   "name": "lets-git-push",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A Lets plugin for deploying through git push (eg heroku)",
   "main": "index.js",
   "scripts": {
