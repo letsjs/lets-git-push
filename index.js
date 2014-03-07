@@ -18,11 +18,11 @@ exports._deploy = function (stage) {
 
     // Guards
     if(!options.remote) {
-      return next(new Error('lets-git-push: options.remote must be set'));
+      return next(new Error('lets-git-push: `options.remote` must be set'));
     }
 
     if(!options.branch && !options.localBranch) {
-      return next(new Error('lets-git-push: options.branch or options.localBranch must be set'));
+      return next(new Error('lets-git-push: `options.branch` or `options.localBranch` must be set'));
     }
 
     // Support different local and remote branch, fall back to default git
@@ -47,10 +47,15 @@ exports._deploy = function (stage) {
 };
 
 exports.exec = function (command, callback) {
-  lets.logger.info(exports.logPrefix + 'executing: ' + command);
+  lets.logger.info(exports.logPrefix + 'executing: `' + command + '`');
 
   exec(command, function (err, stdout, stderr) {
     lets.logger.debug(exports.logPrefix + 'stdout: ' + stdout);
-    callback(stderr || null);
+
+    if(stderr) {
+      lets.logger.error(exports.logPrefix + 'stderr: ' + stderr);
+    }
+
+    callback(err || null);
   });
 };
